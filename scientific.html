@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InstantCalc.net | Scientific Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">InstantCalc<span>.net</span></div>
+        <div class="tagline">Fast, reliable online calculators</div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html#math">Math</a>
+        <a href="index.html#finance">Finance</a>
+        <a href="index.html#health">Health</a>
+        <a href="index.html#other">Other</a>
+      </nav>
+      
+      <div class="search-wrap">
+        <input id="site-search" class="search-input" type="search" placeholder="Search calculators" aria-label="Search calculators" />
+      </div>
+<div class="ad-slot header-ad" aria-label="Advertisement">Ad Space</div>
+    </header>
+
+    <main>
+      <section class="calc-page">
+        <div class="page-header">
+          <h2>Scientific Calculator</h2>
+          <p>Full scientific keypad with trig, logs, powers, and constants.</p>
+        </div>
+        <div class="calc-layout">
+          <div class="calculator">
+            <div class="display" aria-live="polite">
+              <div id="sci-expression" class="display-expression"></div>
+              <div id="sci-result" class="display-result">0</div>
+            </div>
+            <div class="calc-controls">
+              <div class="mode-toggle">
+                <span id="angle-mode" class="mode-pill">DEG</span>
+                <button id="toggle-angle" class="ghost-btn" type="button">Toggle DEG/RAD</button>
+              </div>
+              <button class="btn" data-action="clear">C</button>
+              <button class="btn" data-action="backspace">⌫</button>
+              <button class="btn" data-action="paren" data-value="(">(</button>
+              <button class="btn" data-action="paren" data-value=")">)</button>
+            </div>
+            <div class="button-grid wide" aria-label="Scientific calculator keypad">
+              <button class="btn fn" data-fn="sin">sin</button>
+              <button class="btn fn" data-fn="cos">cos</button>
+              <button class="btn fn" data-fn="tan">tan</button>
+              <button class="btn fn" data-fn="asin">sin⁻¹</button>
+              <button class="btn fn" data-fn="acos">cos⁻¹</button>
+              <button class="btn fn" data-fn="atan">tan⁻¹</button>
+
+              <button class="btn fn" data-fn="sinh">sinh</button>
+              <button class="btn fn" data-fn="cosh">cosh</button>
+              <button class="btn fn" data-fn="tanh">tanh</button>
+              <button class="btn fn" data-fn="log">log</button>
+              <button class="btn fn" data-fn="ln">ln</button>
+              <button class="btn fn" data-fn="sqrt">√</button>
+
+              <button class="btn fn" data-fn="square">x²</button>
+              <button class="btn fn" data-fn="cube">x³</button>
+              <button class="btn" data-op="^">xʸ</button>
+              <button class="btn fn" data-fn="pow10">10ˣ</button>
+              <button class="btn fn" data-fn="exp">eˣ</button>
+              <button class="btn" data-const="pi">π</button>
+
+              <button class="btn" data-const="e">e</button>
+              <button class="btn fn" data-fn="abs">|x|</button>
+              <button class="btn" data-const="ans">Ans</button>
+              <button class="btn" data-op="%">%</button>
+              <button class="btn" data-op="!">n!</button>
+              <button class="btn" data-action="negate">±</button>
+
+              <button class="btn" data-value="7">7</button>
+              <button class="btn" data-value="8">8</button>
+              <button class="btn" data-value="9">9</button>
+              <button class="btn op" data-op="/">÷</button>
+              <button class="btn fn" data-fn="recip">1/x</button>
+              <button class="btn op" data-op="mod">mod</button>
+
+              <button class="btn" data-value="4">4</button>
+              <button class="btn" data-value="5">5</button>
+              <button class="btn" data-value="6">6</button>
+              <button class="btn op" data-op="*">×</button>
+              <button class="btn" data-value="1">1</button>
+              <button class="btn" data-value="2">2</button>
+              <button class="btn" data-value="3">3</button>
+              <button class="btn op" data-op="-">−</button>
+              <button class="btn" data-value="0">0</button>
+              <button class="btn" data-value=".">.</button>
+              <button class="btn op" data-op="+">+</button>
+              <button class="btn equals" data-action="equals">=</button>
+            </div>
+          </div>
+          <aside class="sidebar">
+            <div class="ad-slot sidebar-ad" aria-label="Advertisement">Ad Space</div>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer-copy">© 2026 InstantCalc.net. All rights reserved.</div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

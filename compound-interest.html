@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InstantCalc.net | Compound Interest Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">InstantCalc<span>.net</span></div>
+        <div class="tagline">Fast, reliable online calculators</div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html#math">Math</a>
+        <a href="index.html#finance">Finance</a>
+        <a href="index.html#health">Health</a>
+        <a href="index.html#other">Other</a>
+      </nav>
+      
+      <div class="search-wrap">
+        <input id="site-search" class="search-input" type="search" placeholder="Search calculators" aria-label="Search calculators" />
+      </div>
+<div class="ad-slot header-ad" aria-label="Advertisement">Ad Space</div>
+    </header>
+
+    <main>
+      <section class="calc-page">
+        <div class="page-header">
+          <h2>Compound Interest Calculator</h2>
+          <p>Estimate future value with compounding.</p>
+        </div>
+        <div class="form-card">
+          <label>
+            Principal
+            <input id="compound-principal" type="number" step="0.01" placeholder="5000" />
+          </label>
+          <label>
+            Annual Interest Rate (%)
+            <input id="compound-rate" type="number" step="0.01" placeholder="5" />
+          </label>
+          <label>
+            Compounds per Year
+            <input id="compound-n" type="number" step="1" placeholder="12" />
+          </label>
+          <label>
+            Years
+            <input id="compound-years" type="number" step="0.1" placeholder="10" />
+          </label>
+          <button id="compound-calc" class="btn primary" type="button">Calculate</button>
+          <div id="compound-output" class="result-box">Result will appear here.</div>
+        </div>
+        <div class="ad-slot inline-ad" aria-label="Advertisement">Ad Space</div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer-copy">© 2026 InstantCalc.net. All rights reserved.</div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

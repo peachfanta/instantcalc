@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InstantCalc.net | Basic Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">InstantCalc<span>.net</span></div>
+        <div class="tagline">Fast, reliable online calculators</div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html#math">Math</a>
+        <a href="index.html#finance">Finance</a>
+        <a href="index.html#health">Health</a>
+        <a href="index.html#other">Other</a>
+      </nav>
+      
+      <div class="search-wrap">
+        <input id="site-search" class="search-input" type="search" placeholder="Search calculators" aria-label="Search calculators" />
+      </div>
+<div class="ad-slot header-ad" aria-label="Advertisement">Ad Space</div>
+    </header>
+
+    <main>
+      <section class="calc-page">
+        <div class="page-header">
+          <h2>Basic Calculator</h2>
+          <p>Simple arithmetic for quick calculations.</p>
+        </div>
+        <div class="simple-calc">
+          <div class="display">
+            <div id="basic-expression" class="display-expression"></div>
+            <div id="basic-result" class="display-result">0</div>
+          </div>
+          <div class="simple-grid" aria-label="Basic calculator keypad">
+            <button class="btn" data-basic="7">7</button>
+            <button class="btn" data-basic="8">8</button>
+            <button class="btn" data-basic="9">9</button>
+            <button class="btn op" data-basic-op="/">÷</button>
+            <button class="btn" data-basic="4">4</button>
+            <button class="btn" data-basic="5">5</button>
+            <button class="btn" data-basic="6">6</button>
+            <button class="btn op" data-basic-op="*">×</button>
+            <button class="btn" data-basic="1">1</button>
+            <button class="btn" data-basic="2">2</button>
+            <button class="btn" data-basic="3">3</button>
+            <button class="btn op" data-basic-op="-">−</button>
+            <button class="btn" data-basic="0">0</button>
+            <button class="btn" data-basic=".">.</button>
+            <button class="btn" data-basic-action="clear">C</button>
+            <button class="btn op" data-basic-op="+">+</button>
+            <button class="btn equals" data-basic-action="equals">=</button>
+          </div>
+        </div>
+        <div class="ad-slot inline-ad" aria-label="Advertisement">Ad Space</div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer-copy">© 2026 InstantCalc.net. All rights reserved.</div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

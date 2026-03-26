@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InstantCalc.net | Fraction Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">InstantCalc<span>.net</span></div>
+        <div class="tagline">Fast, reliable online calculators</div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html#math">Math</a>
+        <a href="index.html#finance">Finance</a>
+        <a href="index.html#health">Health</a>
+        <a href="index.html#other">Other</a>
+      </nav>
+      
+      <div class="search-wrap">
+        <input id="site-search" class="search-input" type="search" placeholder="Search calculators" aria-label="Search calculators" />
+      </div>
+<div class="ad-slot header-ad" aria-label="Advertisement">Ad Space</div>
+    </header>
+
+    <main>
+      <section class="calc-page">
+        <div class="page-header">
+          <h2>Fraction Calculator</h2>
+          <p>Add, subtract, multiply, or divide two fractions.</p>
+        </div>
+        <div class="form-card">
+          <div class="form-grid">
+            <label>
+              Numerator 1
+              <input id="frac-a" type="number" step="1" placeholder="1" />
+            </label>
+            <label>
+              Denominator 1
+              <input id="frac-b" type="number" step="1" placeholder="2" />
+            </label>
+            <label>
+              Numerator 2
+              <input id="frac-c" type="number" step="1" placeholder="3" />
+            </label>
+            <label>
+              Denominator 2
+              <input id="frac-d" type="number" step="1" placeholder="4" />
+            </label>
+          </div>
+          <label>
+            Operation
+            <select id="frac-op">
+              <option value="add">Add</option>
+              <option value="sub">Subtract</option>
+              <option value="mul">Multiply</option>
+              <option value="div">Divide</option>
+            </select>
+          </label>
+          <button id="frac-calc" class="btn primary" type="button">Calculate</button>
+          <div id="frac-output" class="result-box">Result will appear here.</div>
+        </div>
+        <div class="ad-slot inline-ad" aria-label="Advertisement">Ad Space</div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer-copy">© 2026 InstantCalc.net. All rights reserved.</div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
