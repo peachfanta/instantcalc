@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InstantCalc.net | Time Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">InstantCalc<span>.net</span></div>
+        <div class="tagline">Fast, reliable online calculators</div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html#math">Math</a>
+        <a href="index.html#finance">Finance</a>
+        <a href="index.html#health">Health</a>
+        <a href="index.html#other">Other</a>
+      </nav>
+      
+      <div class="search-wrap">
+        <input id="site-search" class="search-input" type="search" placeholder="Search calculators" aria-label="Search calculators" />
+      </div>
+<div class="ad-slot header-ad" aria-label="Advertisement">Ad Space</div>
+    </header>
+
+    <main>
+      <section class="calc-page">
+        <div class="page-header">
+          <h2>Time / Duration Calculator</h2>
+          <p>Add time durations or find the difference between times.</p>
+        </div>
+        <div class="form-grid">
+          <div class="form-card">
+            <h3>Add Duration</h3>
+            <label>
+              Start Time
+              <input id="time-start" type="time" />
+            </label>
+            <label>
+              Hours to Add
+              <input id="time-add-hours" type="number" step="1" placeholder="1" />
+            </label>
+            <label>
+              Minutes to Add
+              <input id="time-add-mins" type="number" step="1" placeholder="30" />
+            </label>
+            <button id="time-add-calc" class="btn primary" type="button">Calculate</button>
+            <div id="time-add-output" class="result-box">Result will appear here.</div>
+          </div>
+          <div class="form-card">
+            <h3>Time Difference</h3>
+            <label>
+              Start Time
+              <input id="time-diff-start" type="time" />
+            </label>
+            <label>
+              End Time
+              <input id="time-diff-end" type="time" />
+            </label>
+            <button id="time-diff-calc" class="btn primary" type="button">Calculate</button>
+            <div id="time-diff-output" class="result-box">Result will appear here.</div>
+          </div>
+        </div>
+        <div class="ad-slot inline-ad" aria-label="Advertisement">Ad Space</div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer-copy">© 2026 InstantCalc.net. All rights reserved.</div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

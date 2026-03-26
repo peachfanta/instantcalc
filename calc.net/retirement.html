@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InstantCalc.net | Retirement Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">InstantCalc<span>.net</span></div>
+        <div class="tagline">Fast, reliable online calculators</div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html#math">Math</a>
+        <a href="index.html#finance">Finance</a>
+        <a href="index.html#health">Health</a>
+        <a href="index.html#other">Other</a>
+      </nav>
+      
+      <div class="search-wrap">
+        <input id="site-search" class="search-input" type="search" placeholder="Search calculators" aria-label="Search calculators" />
+      </div>
+<div class="ad-slot header-ad" aria-label="Advertisement">Ad Space</div>
+    </header>
+
+    <main>
+      <section class="calc-page">
+        <div class="page-header">
+          <h2>Retirement Calculator</h2>
+          <p>Project retirement savings growth.</p>
+        </div>
+        <div class="form-card">
+          <label>
+            Current Savings
+            <input id="retire-current" type="number" step="0.01" placeholder="25000" />
+          </label>
+          <label>
+            Monthly Contribution
+            <input id="retire-monthly" type="number" step="0.01" placeholder="500" />
+          </label>
+          <label>
+            Annual Return (%)
+            <input id="retire-rate" type="number" step="0.01" placeholder="6" />
+          </label>
+          <label>
+            Years Until Retirement
+            <input id="retire-years" type="number" step="1" placeholder="25" />
+          </label>
+          <button id="retire-calc" class="btn primary" type="button">Calculate</button>
+          <div id="retire-output" class="result-box">Result will appear here.</div>
+        </div>
+        <div class="ad-slot inline-ad" aria-label="Advertisement">Ad Space</div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer-copy">© 2026 InstantCalc.net. All rights reserved.</div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

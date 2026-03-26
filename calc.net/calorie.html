@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>InstantCalc.net | Calorie Needs Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="brand">
+        <div class="logo">InstantCalc<span>.net</span></div>
+        <div class="tagline">Fast, reliable online calculators</div>
+      </div>
+      <nav class="main-nav">
+        <a href="index.html#math">Math</a>
+        <a href="index.html#finance">Finance</a>
+        <a href="index.html#health">Health</a>
+        <a href="index.html#other">Other</a>
+      </nav>
+      
+      <div class="search-wrap">
+        <input id="site-search" class="search-input" type="search" placeholder="Search calculators" aria-label="Search calculators" />
+      </div>
+<div class="ad-slot header-ad" aria-label="Advertisement">Ad Space</div>
+    </header>
+
+    <main>
+      <section class="calc-page">
+        <div class="page-header">
+          <h2>Calorie Needs Calculator</h2>
+          <p>Estimate daily calories for maintain, lose, or gain goals.</p>
+        </div>
+        <div class="form-card">
+          <label>
+            Sex
+            <select id="cal-sex">
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </label>
+          <label>
+            Age (years)
+            <input id="cal-age" type="number" step="1" placeholder="30" />
+          </label>
+          <label>
+            Height (cm)
+            <input id="cal-height" type="number" step="0.1" placeholder="175" />
+          </label>
+          <label>
+            Weight (kg)
+            <input id="cal-weight" type="number" step="0.1" placeholder="70" />
+          </label>
+          <label>
+            Activity Level
+            <select id="cal-activity">
+              <option value="1.2">Sedentary</option>
+              <option value="1.375">Light</option>
+              <option value="1.55">Moderate</option>
+              <option value="1.725">Active</option>
+              <option value="1.9">Very active</option>
+            </select>
+          </label>
+          <label>
+            Goal
+            <select id="cal-goal">
+              <option value="maintain">Maintain</option>
+              <option value="lose">Lose (-500 kcal)</option>
+              <option value="gain">Gain (+500 kcal)</option>
+            </select>
+          </label>
+          <button id="cal-calc" class="btn primary" type="button">Calculate</button>
+          <div id="cal-output" class="result-box">Result will appear here.</div>
+        </div>
+        <div class="ad-slot inline-ad" aria-label="Advertisement">Ad Space</div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <nav class="footer-nav">
+        <a href="index.html">Home</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="footer-copy">© 2026 InstantCalc.net. All rights reserved.</div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
