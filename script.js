@@ -1824,6 +1824,12 @@ function initScientificVendorPreview() {
     setTimeout(update, 0);
   });
 
+  document.addEventListener('keydown', (event) => {
+    if (event.key === '!') {
+      event.preventDefault();
+    }
+  }, true);
+
   update();
 }
 

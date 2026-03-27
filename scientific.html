@@ -41,46 +41,60 @@
                 <div id="sci-live-result" class="scicalc-live">0</div>
               </div>
               <div class="scicalc-grid" aria-label="Scientific calculator keypad">
-                <button class="scicalc-btn scicalc-fn" onclick="answer()">Ans</button>
-                <button class="scicalc-btn scicalc-fn" onclick="sinfn()">sin</button>
-                <button class="scicalc-btn scicalc-fn" onclick="cosfn()">cos</button>
-                <button class="scicalc-btn scicalc-fn" onclick="tanfn()">tan</button>
-                <button class="scicalc-btn scicalc-fn" onclick="logfn()">log</button>
-                <button class="scicalc-btn scicalc-fn" onclick="lnfn()">ln</button>
-
-                <button class="scicalc-btn scicalc-fn" onclick="pi()">π</button>
-                <button class="scicalc-btn scicalc-fn" onclick="e()">e</button>
-                <button class="scicalc-btn scicalc-fn" onclick="squareroot()">√</button>
-                <button class="scicalc-btn scicalc-fn" onclick="power()">xʸ</button>
-                <button class="scicalc-btn scicalc-fn" onclick="square()">x²</button>
-                <button class="scicalc-btn scicalc-fn" onclick="abs()">|x|</button>
-
-                <button class="scicalc-btn scicalc-fn" onclick="display1('(')">(</button>
-                <button class="scicalc-btn scicalc-fn" onclick="display1(')')">)</button>
-                <button class="scicalc-btn scicalc-fn" onclick="percentage()">%</button>
-                <button class="scicalc-btn scicalc-fn" onclick="factorial()">!</button>
-                <button class="scicalc-btn scicalc-fn" onclick="exp()">EXP</button>
-                <button class="scicalc-btn scicalc-op" onclick="allclr()">C</button>
-
-                <button class="scicalc-btn scicalc-num" onclick="display1('7')">7</button>
-                <button class="scicalc-btn scicalc-num" onclick="display1('8')">8</button>
-                <button class="scicalc-btn scicalc-num" onclick="display1('9')">9</button>
-                <button class="scicalc-btn scicalc-op" onclick="display1('/')">÷</button>
-                <button class="scicalc-btn scicalc-op" onclick="multiply()">×</button>
-                <button class="scicalc-btn scicalc-op" onclick="back()">⌫</button>
-
-                <button class="scicalc-btn scicalc-num" onclick="display1('4')">4</button>
-                <button class="scicalc-btn scicalc-num" onclick="display1('5')">5</button>
-                <button class="scicalc-btn scicalc-num" onclick="display1('6')">6</button>
-                <button class="scicalc-btn scicalc-op" onclick="display1('-')">−</button>
-                <button class="scicalc-btn scicalc-op" onclick="display1('+')">+</button>
-                <button class="scicalc-btn scicalc-eq" onclick="runtwofunction()">=</button>
-
-                <button class="scicalc-btn scicalc-num" onclick="display1('1')">1</button>
-                <button class="scicalc-btn scicalc-num" onclick="display1('2')">2</button>
-                <button class="scicalc-btn scicalc-num" onclick="display1('3')">3</button>
-                <button class="scicalc-btn scicalc-num" onclick="display1('0')">0</button>
-                <button class="scicalc-btn scicalc-num" onclick="display1('.')">.</button>
+                <div class="scicalc-row">
+                  <button class="scicalc-btn scicalc-fn" onclick="answer()">Ans</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="sinfn()">sin</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="cosfn()">cos</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="tanfn()">tan</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="logfn()">log</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="lnfn()">ln</button>
+                </div>
+                <div class="scicalc-row">
+                  <button class="scicalc-btn scicalc-fn" onclick="pi()">π</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="e()">e</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="squareroot()">√</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="power()">xʸ</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="square()">x²</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="abs()">|x|</button>
+                </div>
+                <div class="scicalc-row">
+                  <button class="scicalc-btn scicalc-fn" onclick="display1('(')">(</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="display1(')')">)</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="percentage()">%</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="exp()">EXP</button>
+                  <button class="scicalc-btn scicalc-op" onclick="allclr()">C</button>
+                  <button class="scicalc-btn scicalc-op" onclick="back()">⌫</button>
+                </div>
+                <div class="scicalc-row scicalc-row-4">
+                  <button class="scicalc-btn scicalc-num" onclick="display1('7')">7</button>
+                  <button class="scicalc-btn scicalc-num" onclick="display1('8')">8</button>
+                  <button class="scicalc-btn scicalc-num" onclick="display1('9')">9</button>
+                  <button class="scicalc-btn scicalc-op" onclick="display1('/')">÷</button>
+                </div>
+                <div class="scicalc-row scicalc-row-4">
+                  <button class="scicalc-btn scicalc-num" onclick="display1('4')">4</button>
+                  <button class="scicalc-btn scicalc-num" onclick="display1('5')">5</button>
+                  <button class="scicalc-btn scicalc-num" onclick="display1('6')">6</button>
+                  <button class="scicalc-btn scicalc-op" onclick="multiply()">×</button>
+                </div>
+                <div class="scicalc-row scicalc-row-4">
+                  <button class="scicalc-btn scicalc-num" onclick="display1('1')">1</button>
+                  <button class="scicalc-btn scicalc-num" onclick="display1('2')">2</button>
+                  <button class="scicalc-btn scicalc-num" onclick="display1('3')">3</button>
+                  <button class="scicalc-btn scicalc-op" onclick="display1('-')">−</button>
+                </div>
+                <div class="scicalc-row scicalc-row-4">
+                  <button class="scicalc-btn scicalc-num" onclick="display1('0')">0</button>
+                  <button class="scicalc-btn scicalc-num" onclick="display1('.')">.</button>
+                  <button class="scicalc-btn scicalc-fn" onclick="answer()">Ans</button>
+                  <button class="scicalc-btn scicalc-op" onclick="display1('+')">+</button>
+                </div>
+                <div class="scicalc-row scicalc-row-4">
+                  <span class="scicalc-spacer"></span>
+                  <span class="scicalc-spacer"></span>
+                  <span class="scicalc-spacer"></span>
+                  <button class="scicalc-btn scicalc-eq" onclick="runtwofunction()">=</button>
+                </div>
               </div>
             </div>
           </div>
