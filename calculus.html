@@ -34,8 +34,46 @@
         <div class="form-card">
           <label>
             Function f(x)
-            <input id="calc-fx" type="text" placeholder="sin(x) + x^2" />
+            <input id="calc-fx" class="fx-input" type="text" placeholder="sin(x) + x^2" />
           </label>
+          <div class="display" aria-live="polite">
+            <div id="calc-expression" class="display-expression"></div>
+            <div id="calc-result" class="display-result">0</div>
+          </div>
+          <div class="calc-mini-controls">
+            <button class="btn" data-calc-action="clear">C</button>
+            <button class="btn" data-calc-action="backspace">⌫</button>
+            <button class="btn" data-calc-action="paren" data-calc-value="(">(</button>
+            <button class="btn" data-calc-action="paren" data-calc-value=")">)</button>
+          </div>
+          <div class="calc-keypad" aria-label="Calculus keypad">
+            <button class="btn fn" data-calc-fn="sin">sin</button>
+            <button class="btn fn" data-calc-fn="cos">cos</button>
+            <button class="btn fn" data-calc-fn="tan">tan</button>
+            <button class="btn fn" data-calc-fn="log">log</button>
+            <button class="btn fn" data-calc-fn="ln">ln</button>
+            <button class="btn fn" data-calc-fn="sqrt">√</button>
+            <button class="btn" data-calc-value="x">x</button>
+            <button class="btn" data-calc-op="^">xʸ</button>
+            <button class="btn" data-calc-const="pi">π</button>
+            <button class="btn" data-calc-const="e">e</button>
+            <button class="btn" data-calc-op="+">+</button>
+            <button class="btn" data-calc-op="-">−</button>
+            <button class="btn" data-calc-value="7">7</button>
+            <button class="btn" data-calc-value="8">8</button>
+            <button class="btn" data-calc-value="9">9</button>
+            <button class="btn" data-calc-op="*">×</button>
+            <button class="btn" data-calc-value="4">4</button>
+            <button class="btn" data-calc-value="5">5</button>
+            <button class="btn" data-calc-value="6">6</button>
+            <button class="btn" data-calc-op="/">÷</button>
+            <button class="btn" data-calc-value="1">1</button>
+            <button class="btn" data-calc-value="2">2</button>
+            <button class="btn" data-calc-value="3">3</button>
+            <button class="btn" data-calc-value="0">0</button>
+            <button class="btn" data-calc-value=".">.</button>
+            <button class="btn" data-calc-const="ans">Ans</button>
+          </div>
           <div class="form-grid">
             <label>
               Evaluate at x

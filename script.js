@@ -2,6 +2,8 @@ const sciExpressionEl = document.getElementById('sci-expression');
 const sciResultEl = document.getElementById('sci-result');
 const angleModeEl = document.getElementById('angle-mode');
 const toggleAngleBtn = document.getElementById('toggle-angle');
+const calcExpressionEl = document.getElementById('calc-expression');
+const calcResultEl = document.getElementById('calc-result');
 
 const basicExpressionEl = document.getElementById('basic-expression');
 const basicResultEl = document.getElementById('basic-result');
@@ -83,6 +85,16 @@ function updateBasicDisplay(result = null) {
   }
 }
 
+function updateCalcDisplay(expression, result = null) {
+  if (!calcExpressionEl || !calcResultEl) {
+    return;
+  }
+  calcExpressionEl.textContent = formatExpression(expression);
+  if (result !== null) {
+    calcResultEl.textContent = result;
+  }
+}
+
 function setAngleMode() {
   if (!angleModeEl) {
     return;
@@ -122,10 +134,26 @@ function handleResult(state, updateFn, setLast = false) {
   }
 }
 
+function shouldInsertImplicit(prevType, nextType) {
+  const left = ['number', 'const', 'var', 'close', 'postfix'];
+  const right = ['number', 'const', 'var', 'func', 'open'];
+  return left.includes(prevType) && right.includes(nextType);
+}
+
 function tokenize(expr, ansValue) {
   const tokens = [];
   const clean = expr.replace(/\s+/g, '');
   let i = 0;
+  let prevType = null;
+
+  const addToken = (token, tokenType) => {
+    if (prevType && shouldInsertImplicit(prevType, tokenType)) {
+      tokens.push({ type: 'op', value: '*' });
+    }
+    tokens.push(token);
+    prevType = tokenType;
+  };
+
   while (i < clean.length) {
     const char = clean[i];
     if (/[0-9.]/.test(char)) {
@@ -138,7 +166,7 @@ function tokenize(expr, ansValue) {
       if (num.split('.').length > 2) {
         throw new Error('Invalid number');
       }
-      tokens.push({ type: 'number', value: parseFloat(num) });
+      addToken({ type: 'number', value: parseFloat(num) }, 'number');
       continue;
     }
     if (/[a-z]/i.test(char)) {
@@ -150,30 +178,36 @@ function tokenize(expr, ansValue) {
       }
       const lower = word.toLowerCase();
       if (lower === 'x') {
-        tokens.push({ type: 'var', value: 'x' });
+        addToken({ type: 'var', value: 'x' }, 'var');
       } else if (lower === 'mod') {
-        tokens.push({ type: 'op', value: 'mod' });
+        addToken({ type: 'op', value: 'mod' }, 'operator');
       } else if (functionsMap.includes(lower)) {
-        tokens.push({ type: 'func', value: lower });
+        addToken({ type: 'func', value: lower }, 'func');
       } else if (lower in getConstantsMap(ansValue)) {
-        tokens.push({ type: 'const', value: lower });
+        addToken({ type: 'const', value: lower }, 'const');
       } else {
         throw new Error('Unknown token');
       }
       continue;
     }
     if ('+-*/^()'.includes(char)) {
-      tokens.push({ type: 'op', value: char });
+      if (char === '(') {
+        addToken({ type: 'op', value: char }, 'open');
+      } else if (char === ')') {
+        addToken({ type: 'op', value: char }, 'close');
+      } else {
+        addToken({ type: 'op', value: char }, 'operator');
+      }
       i += 1;
       continue;
     }
     if (char === '%') {
-      tokens.push({ type: 'postfix', value: 'pct' });
+      addToken({ type: 'postfix', value: 'pct' }, 'postfix');
       i += 1;
       continue;
     }
     if (char === '!') {
-      tokens.push({ type: 'postfix', value: 'fact' });
+      addToken({ type: 'postfix', value: 'fact' }, 'postfix');
       i += 1;
       continue;
     }
@@ -483,6 +517,20 @@ function shouldUseUnary(expr) {
   return '+-*/^('.includes(lastChar) || expr.endsWith('mod');
 }
 
+function tryLiveUpdate(state, updateFn) {
+  const expr = state.expr;
+  if (!expr || !expr.trim()) {
+    updateFn('0');
+    return;
+  }
+  try {
+    const resultValue = evaluateExpression(expr, sciState.angle, sciState.last);
+    updateFn(formatResult(resultValue));
+  } catch (error) {
+    // Ignore partial/incomplete expressions.
+  }
+}
+
 function initScientificCalculator() {
   if (!sciExpressionEl || !sciResultEl) {
     return;
@@ -495,24 +543,30 @@ function initScientificCalculator() {
       if (btn.dataset.value) {
         appendToExpression(sciState, btn.dataset.value);
         updateSciDisplay(null);
+        tryLiveUpdate(sciState, updateSciDisplay);
       } else if (btn.dataset.op) {
         appendToExpression(sciState, btn.dataset.op);
         updateSciDisplay(null);
+        tryLiveUpdate(sciState, updateSciDisplay);
       } else if (btn.dataset.fn) {
         appendToExpression(sciState, `${btn.dataset.fn}(`);
         updateSciDisplay(null);
+        tryLiveUpdate(sciState, updateSciDisplay);
       } else if (btn.dataset.const) {
         appendToExpression(sciState, btn.dataset.const);
         updateSciDisplay(null);
+        tryLiveUpdate(sciState, updateSciDisplay);
       } else if (btn.dataset.action === 'clear') {
         clearExpression(sciState, updateSciDisplay);
       } else if (btn.dataset.action === 'backspace') {
         backspaceExpression(sciState, updateSciDisplay);
+        tryLiveUpdate(sciState, updateSciDisplay);
       } else if (btn.dataset.action === 'equals') {
         handleResult(sciState, updateSciDisplay, true);
       } else if (btn.dataset.action === 'paren') {
         appendToExpression(sciState, btn.dataset.value);
         updateSciDisplay(null);
+        tryLiveUpdate(sciState, updateSciDisplay);
       } else if (btn.dataset.action === 'negate') {
         if (shouldUseUnary(sciState.expr)) {
           appendToExpression(sciState, '-');
@@ -520,6 +574,7 @@ function initScientificCalculator() {
           appendToExpression(sciState, '*-1');
         }
         updateSciDisplay(null);
+        tryLiveUpdate(sciState, updateSciDisplay);
       }
     });
   });
@@ -547,9 +602,11 @@ function initBasicCalculator() {
       if (btn.dataset.basic) {
         appendToExpression(basicState, btn.dataset.basic);
         updateBasicDisplay(null);
+        tryLiveUpdate(basicState, updateBasicDisplay);
       } else if (btn.dataset.basicOp) {
         appendToExpression(basicState, btn.dataset.basicOp);
         updateBasicDisplay(null);
+        tryLiveUpdate(basicState, updateBasicDisplay);
       } else if (btn.dataset.basicAction === 'clear') {
         clearExpression(basicState, updateBasicDisplay);
       } else if (btn.dataset.basicAction === 'equals') {
@@ -575,11 +632,13 @@ function initKeyboardSupport() {
     if (/[0-9]/.test(key)) {
       appendToExpression(sciState, key);
       updateSciDisplay(null);
+      tryLiveUpdate(sciState, updateSciDisplay);
       return;
     }
     if (['+', '-', '*', '/', '^', '.', '(', ')', '%', '!'].includes(key)) {
       appendToExpression(sciState, key);
       updateSciDisplay(null);
+      tryLiveUpdate(sciState, updateSciDisplay);
       return;
     }
     if (key === 'Enter') {
@@ -589,6 +648,7 @@ function initKeyboardSupport() {
     }
     if (key === 'Backspace') {
       backspaceExpression(sciState, updateSciDisplay);
+      tryLiveUpdate(sciState, updateSciDisplay);
       return;
     }
     if (key === 'Delete') {
@@ -598,6 +658,7 @@ function initKeyboardSupport() {
     if (/[a-z]/i.test(key)) {
       appendToExpression(sciState, key.toLowerCase());
       updateSciDisplay(null);
+      tryLiveUpdate(sciState, updateSciDisplay);
     }
   });
 }
@@ -838,6 +899,48 @@ function initCalculusCalculator() {
   }
 
   const evalFx = (x) => evaluateExpression(fxInput.value, sciState.angle, sciState.last, x);
+  const updateCalcPreview = () => {
+    const expr = fxInput.value;
+    updateCalcDisplay(expr, null);
+    const xVal = Number(xInput.value);
+    if (!expr.trim() || !Number.isFinite(xVal)) {
+      updateCalcDisplay(expr, '0');
+      return;
+    }
+    try {
+      const result = evalFx(xVal);
+      updateCalcDisplay(expr, formatResult(result));
+    } catch (err) {
+      updateCalcDisplay(expr, 'Error');
+    }
+  };
+
+  fxInput.addEventListener('input', updateCalcPreview);
+  xInput.addEventListener('input', updateCalcPreview);
+
+  const keypadButtons = document.querySelectorAll('[data-calc-value], [data-calc-op], [data-calc-fn], [data-calc-const], [data-calc-action]');
+  keypadButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      if (btn.dataset.calcValue) {
+        fxInput.value += btn.dataset.calcValue;
+      } else if (btn.dataset.calcOp) {
+        fxInput.value += btn.dataset.calcOp;
+      } else if (btn.dataset.calcFn) {
+        fxInput.value += `${btn.dataset.calcFn}(`;
+      } else if (btn.dataset.calcConst) {
+        fxInput.value += btn.dataset.calcConst;
+      } else if (btn.dataset.calcAction === 'clear') {
+        fxInput.value = '';
+      } else if (btn.dataset.calcAction === 'backspace') {
+        fxInput.value = fxInput.value.slice(0, -1);
+      } else if (btn.dataset.calcAction === 'paren') {
+        fxInput.value += btn.dataset.calcValue;
+      }
+      updateCalcPreview();
+    });
+  });
+
+  updateCalcPreview();
 
   derivBtn.addEventListener('click', () => {
     const x = Number(xInput.value);
@@ -1143,7 +1246,17 @@ function initBmiCalculator() {
       return;
     }
     const bmi = weight / Math.pow(height / 100, 2);
-    output.textContent = `BMI: ${formatResult(bmi)}`;
+    let category = 'Healthy';
+    if (bmi < 18.5) {
+      category = 'Underweight';
+    } else if (bmi < 25) {
+      category = 'Healthy';
+    } else if (bmi < 30) {
+      category = 'Overweight';
+    } else {
+      category = 'Obese';
+    }
+    output.textContent = `BMI: ${formatResult(bmi)} (${category})`;
   });
 }
 
@@ -1628,6 +1741,92 @@ function initHexBinaryCalculator() {
   });
 }
 
+function normalizeScientificExpression(expr) {
+  return expr
+    .replace(/×/g, '*')
+    .replace(/÷/g, '/')
+    .replace(/−/g, '-')
+    .replace(/π/g, 'pi')
+    .replace(/√\(/g, 'sqrt(')
+    .replace(/×10\^/g, '*10^')
+    .replace(/²/g, '^2')
+    .replace(/³/g, '^3')
+    .replace(/Ans/g, String(sciState.last));
+}
+
+function initScientificVendorPreview() {
+  const exprInput = document.getElementById('expression1');
+  const liveOutput = document.getElementById('sci-live-result');
+  if (!exprInput || !liveOutput) {
+    return;
+  }
+
+  const update = () => {
+    const raw = exprInput.value || '';
+    if (!raw.trim()) {
+      liveOutput.textContent = '0';
+      return;
+    }
+    try {
+      const normalized = normalizeScientificExpression(raw);
+      const result = evaluateExpression(normalized, sciState.angle, sciState.last);
+      liveOutput.textContent = formatResult(result);
+    } catch (err) {
+      liveOutput.textContent = 'Error';
+    }
+  };
+
+  const wrapFn = (name) => {
+    const fn = window[name];
+    if (typeof fn !== 'function') {
+      return;
+    }
+    window[name] = (...args) => {
+      const result = fn.apply(window, args);
+      update();
+      if (name === 'runtwofunction') {
+        const finalValue = Number(exprInput.value);
+        if (Number.isFinite(finalValue)) {
+          sciState.last = finalValue;
+        }
+      }
+      return result;
+    };
+  };
+
+  [
+    'display1',
+    'display2',
+    'display3',
+    'back',
+    'clr',
+    'allclr',
+    'sinfn',
+    'cosfn',
+    'tanfn',
+    'logfn',
+    'lnfn',
+    'abs',
+    'squareroot',
+    'power',
+    'square',
+    'multiply',
+    'percentage',
+    'pi',
+    'e',
+    'exp',
+    'answer',
+    'factorial',
+    'runtwofunction'
+  ].forEach(wrapFn);
+
+  document.addEventListener('keydown', () => {
+    setTimeout(update, 0);
+  });
+
+  update();
+}
+
 function initSearch() {
   const search = document.getElementById('site-search');
   if (!search) {
@@ -1706,3 +1905,4 @@ initRandomCalculator();
 initPasswordCalculator();
 initHexBinaryCalculator();
 initSearch();
+initScientificVendorPreview();

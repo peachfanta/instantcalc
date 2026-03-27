@@ -83,6 +83,29 @@ a:hover {
   font-size: 0.95rem;
 }
 
+.fx-input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+  background: #1d2630;
+  color: #f8f8f8;
+}
+
+.calc-keypad {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.calc-mini-controls {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
 .ad-slot {
   border: 1px dashed var(--border);
   background: #f9fafb;
@@ -185,6 +208,7 @@ a:hover {
   padding: 20px;
 }
 
+
 .display {
   background: #1d2630;
   color: #f8f8f8;
@@ -217,6 +241,94 @@ a:hover {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 10px;
   margin-bottom: 12px;
+}
+
+.scicalc {
+  display: grid;
+  gap: 14px;
+}
+
+.scicalc-history {
+  width: 100%;
+  min-height: 90px;
+  resize: none;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  font-family: 'Source Sans 3', sans-serif;
+  color: var(--muted);
+  background: #f4f7fa;
+}
+
+.scicalc-display {
+  background: #1d2630;
+  border-radius: 10px;
+  padding: 12px 16px;
+  display: grid;
+  gap: 6px;
+}
+
+.scicalc-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #f8f8f8;
+  font-size: 1.4rem;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.scicalc-live {
+  text-align: right;
+  color: #a7b1bc;
+  font-size: 1rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.scicalc-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+}
+
+.scicalc-btn {
+  border: 1px solid var(--border);
+  background: var(--button);
+  color: var(--text);
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: transform 0.08s ease, background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.scicalc-btn:hover {
+  background: var(--button-hover);
+}
+
+.scicalc-btn:active {
+  transform: translateY(1px);
+  box-shadow: inset 0 0 0 rgba(0, 0, 0, 0.08);
+}
+
+.scicalc-fn {
+  background: #f1efe9;
+  border-color: #d7d0c3;
+}
+
+.scicalc-op {
+  background: #dfe7f2;
+  border-color: #c0cfdf;
+  color: #234f7a;
+  font-weight: 600;
+}
+
+.scicalc-eq {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
 }
 
 .mode-toggle {
@@ -427,6 +539,10 @@ a:hover {
   }
 
   .button-grid.wide {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .scicalc-grid {
     grid-template-columns: repeat(4, 1fr);
   }
 
